@@ -8,12 +8,12 @@ namespace BotBits.LoginForm
 {
     public static class ConnectionManagerExtensions
     {
-        public static Task<LoginClient> PromptLoginAsync(this ConnectionManager connectionManager)
+        public static Task<LoginClient> WithPromptAsync(this Login login)
         {
             return RunThreadAsync<LoginClient>(tcs =>
             {
                 Application.EnableVisualStyles();
-                var form = new Login(connectionManager);
+                var form = new LoginForm(login);
                 Application.Run(form);
                 if (form.LoginClient != null)
                 {
@@ -26,9 +26,9 @@ namespace BotBits.LoginForm
             });
         }
 
-        public static LoginClient PromptLogin(this ConnectionManager connectionManager)
+        public static LoginClient WithPrompt(this Login login)
         {
-            return connectionManager.PromptLoginAsync().GetResultEx();
+            return login.WithPromptAsync().GetResultEx();
         }
 
         private static Task<T> RunThreadAsync<T>(Action<TaskCompletionSource<T>> callback)

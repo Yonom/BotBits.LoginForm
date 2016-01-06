@@ -11,15 +11,15 @@ using BotBits.LoginForm.Facebook;
 
 namespace BotBits.LoginForm
 {
-    internal partial class Login : Form
+    internal partial class LoginForm : Form
     {
-        public ConnectionManager ConnectionManager { get; private set; }
+        public Login Login { get; private set; }
         public LoginClient LoginClient { get; private set; }
         private LoginData SelectedData { get { return SettingsManager.LoginDatas[this.listBoxAccounts.SelectedIndex]; } }
 
-        public Login(ConnectionManager connectionManager)
+        public LoginForm(Login login)
         {
-            this.ConnectionManager = connectionManager;
+            this.Login = login;
             InitializeComponent();
         }
 
@@ -100,7 +100,7 @@ namespace BotBits.LoginForm
             this.Hide();
             try
             {
-                this.LoginClient = data.Login(this.ConnectionManager);
+                this.LoginClient = data.Login(this.Login);
 
                 SettingsManager.LoginDatas.Remove(data);
                 SettingsManager.LoginDatas.Insert(0, data);
@@ -119,7 +119,7 @@ namespace BotBits.LoginForm
             this.Hide();
             try
             {
-                this.LoginClient = this.ConnectionManager.FacebookLogin(facebookToken);
+                this.LoginClient = this.Login.WithFacebook(facebookToken);
                 this.Close();
             }
             catch (Exception ex)

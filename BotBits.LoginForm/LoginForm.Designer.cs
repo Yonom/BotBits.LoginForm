@@ -1,6 +1,6 @@
 ﻿namespace BotBits.LoginForm
 {
-    partial class Login
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.

@@ -22,16 +22,16 @@ namespace BotBits.LoginForm
         public string Email { get; set; }
         public string Password { get; set; }
 
-        internal LoginClient Login(ConnectionManager connectionManager)
+        internal LoginClient Login(BotBits.Login login)
         {
             switch (LoginType)
             {
                 case LoginType.Regular:
-                    return connectionManager.EmailLogin(this.Email, this.Password);
+                    return login.WithEmail(this.Email, this.Password);
                 case LoginType.Kongregate:
-                    return connectionManager.KongregateLogin(this.Email, this.Password);
+                    return login.WithKongregate(this.Email, this.Password);
                 case LoginType.ArmorGames:
-                    return connectionManager.ArmorGamesLogin(this.Email, this.Password);
+                    return login.WithArmorGames(this.Email, this.Password);
                 default:
                     throw new InvalidOperationException();
             }

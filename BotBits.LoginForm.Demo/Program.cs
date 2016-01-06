@@ -10,7 +10,7 @@ namespace BotBits.LoginForm.Demo
 
         private static void Main()
         {
-            ConnectionManager.Of(bot).PromptLoginAsync().CreateJoinRoomAsync("PW01");
+            Login.Of(bot).WithPromptAsync().CreateJoinRoomAsync("PW01");
             Thread.Sleep(-1);
         }
     }

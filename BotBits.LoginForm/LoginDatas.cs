@@ -15,7 +15,7 @@ namespace BotBits.LoginForm
         {
             if (isNew)
             {
-                this.Add(new LoginData(LoginType.Regular, "guest", "guest"));
+                Add(new LoginData(LoginType.Regular, "guest", "guest"));
             }
         }
     }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using System;
 
 namespace BotBits.LoginForm
 {
@@ -7,12 +7,12 @@ namespace BotBits.LoginForm
     {
         public Add(string windowName, LoginData loginData = null)
         {
-            this.LoginData = loginData;
+            LoginData = loginData;
             InitializeComponent();
-            this.buttonAdd.Text = windowName;
-            if (this.LoginData != null)
+            buttonAdd.Text = windowName;
+            if (LoginData != null)
             {
-                switch (this.LoginData.LoginType)
+                switch (LoginData.LoginType)
                 {
                     case LoginType.Kongregate:
                         radioButtonKongregate.Checked = true;
@@ -22,26 +22,43 @@ namespace BotBits.LoginForm
                         break;
                 }
 
-                this.textBoxEmail.Text = this.LoginData.Email;
-                this.textBoxPassword.Text = this.LoginData.Password;
+                textBoxEmail.Text = LoginData.Email;
+                textBoxPassword.Text = LoginData.Password;
             }
             else
             {
-                this.LoginData = new LoginData();
+                LoginData = new LoginData();
             }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (radioButtonRegular.Checked) this.LoginData.LoginType = LoginType.Regular;
-            if (radioButtonKongregate.Checked) this.LoginData.LoginType = LoginType.Kongregate;
-            if (radioButtonArmorGames.Checked) this.LoginData.LoginType = LoginType.ArmorGames;
+            if (radioButtonRegular.Checked) LoginData.LoginType = LoginType.Regular;
+            if (radioButtonKongregate.Checked) LoginData.LoginType = LoginType.Kongregate;
+            if (radioButtonArmorGames.Checked) LoginData.LoginType = LoginType.ArmorGames;
+            if (radioButtonFacebook.Checked) LoginData.LoginType = LoginType.Facebook;
 
-            this.LoginData.Email = textBoxEmail.Text;
-            this.LoginData.Password = textBoxPassword.Text;
-            this.DialogResult = DialogResult.OK;
+            LoginData.Email = textBoxEmail.Text;
+            LoginData.Password = textBoxPassword.Text;
+            DialogResult = DialogResult.OK;
         }
 
         public LoginData LoginData { get; set; }
+        
+        private void radioCheck(object sender, EventArgs e)
+        {
+            if (radioButtonFacebook.Checked)
+            {
+                labelEmail.Text = "Token: ";
+                labelPassword.Visible = false;
+                textBoxPassword.Visible = false;
+            }
+            else
+            {
+                labelEmail.Text = "Email/UserId";
+                labelPassword.Visible = true;
+                textBoxPassword.Visible = true;
+            }
+        }
     }
 }

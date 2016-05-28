@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-using System.Threading;
-using BotBits.Events;
+﻿using System.Threading;
 
 namespace BotBits.LoginForm.Demo
 {

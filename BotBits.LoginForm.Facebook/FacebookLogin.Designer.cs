@@ -1,11 +1,15 @@
-﻿namespace BotBits.LoginForm.Facebook
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using AxSHDocVw;
+
+namespace BotBits.LoginForm.Facebook
 {
     partial class FacebookLogin
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -73,8 +77,8 @@
 
         #endregion
 
-        private AxSHDocVw.AxWebBrowser axWebBrowser;
-        private System.Windows.Forms.Label labelPleaseWait;
+        private AxWebBrowser axWebBrowser;
+        private Label labelPleaseWait;
 
 
 

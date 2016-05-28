@@ -7,6 +7,7 @@ namespace BotBits.LoginForm
     {
         Regular,
         Kongregate,
-        ArmorGames
+        ArmorGames,
+        Facebook
     }
 }

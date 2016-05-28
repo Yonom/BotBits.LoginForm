@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Linq;
+using System;
 
 namespace BotBits.LoginForm
 {

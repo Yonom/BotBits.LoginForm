@@ -1,11 +1,14 @@
-﻿namespace BotBits.LoginForm
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BotBits.LoginForm
 {
     partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,6 +35,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.buttonFacebook = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.buttonQuickLogin = new System.Windows.Forms.Button();
@@ -39,7 +43,6 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.listBoxAccounts = new System.Windows.Forms.ListBox();
-            this.buttonFacebook = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -81,6 +84,15 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(120, 274);
             this.panel4.TabIndex = 3;
+            // 
+            // buttonFacebook
+            // 
+            this.buttonFacebook.Location = new System.Drawing.Point(10, 208);
+            this.buttonFacebook.Name = "buttonFacebook";
+            this.buttonFacebook.Size = new System.Drawing.Size(100, 30);
+            this.buttonFacebook.TabIndex = 7;
+            this.buttonFacebook.Text = "Facebook login";
+            this.buttonFacebook.Click += new System.EventHandler(this.buttonFacebook_Click);
             // 
             // buttonEdit
             // 
@@ -158,16 +170,7 @@
             this.listBoxAccounts.TabIndex = 0;
             this.listBoxAccounts.SelectedIndexChanged += new System.EventHandler(this.listBoxAccounts_SelectedIndexChanged);
             // 
-            // buttonFacebook
-            // 
-            this.buttonFacebook.Location = new System.Drawing.Point(10, 208);
-            this.buttonFacebook.Name = "buttonFacebook";
-            this.buttonFacebook.Size = new System.Drawing.Size(100, 30);
-            this.buttonFacebook.TabIndex = 7;
-            this.buttonFacebook.Text = "Facebook login";
-            this.buttonFacebook.Click += new System.EventHandler(this.buttonFacebook_Click);
-            // 
-            // Login
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -178,7 +181,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(250, 269);
-            this.Name = "Login";
+            this.Name = "LoginForm";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel4.ResumeLayout(false);
@@ -189,18 +192,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ListBox listBoxAccounts;
-        private System.Windows.Forms.Button buttonSelect;
-        private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.Button buttonRemove;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button buttonQuickLogin;
-        private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.Button buttonFacebook;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private ListBox listBoxAccounts;
+        private Button buttonSelect;
+        private Button buttonAdd;
+        private Button buttonRemove;
+        private Panel panel5;
+        private Button buttonQuickLogin;
+        private Button buttonEdit;
+        private Button buttonFacebook;
 
     }
 }

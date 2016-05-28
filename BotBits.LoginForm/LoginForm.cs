@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BotBits.LoginForm.Facebook;
 using System.Windows.Forms;
-using BotBits.LoginForm.Facebook;
+using System;
 
 namespace BotBits.LoginForm
 {
@@ -15,18 +8,17 @@ namespace BotBits.LoginForm
     {
         public Login Login { get; private set; }
         public LoginClient LoginClient { get; private set; }
-        private LoginData SelectedData { get { return SettingsManager.LoginDatas[this.listBoxAccounts.SelectedIndex]; } }
+        private LoginData SelectedData => SettingsManager.LoginDatas[listBoxAccounts.SelectedIndex];
 
         public LoginForm(Login login)
         {
-            this.Login = login;
+            Login = login;
             InitializeComponent();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-            foreach (var data in SettingsManager.LoginDatas)
-                this.Add(data);
+            foreach (var data in SettingsManager.LoginDatas) Add(data);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -36,32 +28,32 @@ namespace BotBits.LoginForm
             {
                 SettingsManager.LoginDatas.Add(dia.LoginData);
                 SettingsManager.Save();
-                this.Add(dia.LoginData);
+                Add(dia.LoginData);
             }
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            var id = this.listBoxAccounts.SelectedIndex;
-            var dia = new Add("Save", this.SelectedData);
+            var id = listBoxAccounts.SelectedIndex;
+            var dia = new Add("Save", SelectedData);
             if (dia.ShowDialog(this) == DialogResult.OK)
             {
                 SettingsManager.Save();
-                this.listBoxAccounts.Items[id] = DataToString(dia.LoginData);
+                listBoxAccounts.Items[id] = DataToString(dia.LoginData);
             }
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            var id = this.listBoxAccounts.SelectedIndex;
+            var id = listBoxAccounts.SelectedIndex;
             SettingsManager.LoginDatas.RemoveAt(id);
             SettingsManager.Save();
-            this.listBoxAccounts.Items.RemoveAt(id);
+            listBoxAccounts.Items.RemoveAt(id);
         }
 
         private void buttonSelect_Click(object sender, EventArgs e)
         {
-            this.DoLogin(this.SelectedData);
+            DoLogin(SelectedData);
         }
 
         private void buttonFacebook_Click(object sender, EventArgs e)
@@ -69,7 +61,7 @@ namespace BotBits.LoginForm
             var dia = new FacebookLogin();
             if (dia.ShowDialog(this) == DialogResult.OK)
             {
-                this.DoLogin(dia.AccessToken);
+                DoLogin(dia.AccessToken);
             }
         }
 
@@ -78,60 +70,60 @@ namespace BotBits.LoginForm
             var dia = new Add("Connect");
             if (dia.ShowDialog(this) == DialogResult.OK)
             {
-                this.DoLogin(dia.LoginData);
+                DoLogin(dia.LoginData);
             }
         }
 
         private void listBoxAccounts_SelectedIndexChanged(object sender, EventArgs e)
         {
             var enabled = listBoxAccounts.SelectedIndex != -1;
-            this.buttonEdit.Enabled = enabled;
-            this.buttonRemove.Enabled = enabled;
-            this.buttonSelect.Enabled = enabled;
+            buttonEdit.Enabled = enabled;
+            buttonRemove.Enabled = enabled;
+            buttonSelect.Enabled = enabled;
         }
 
         private void Add(LoginData data)
         {
-            this.listBoxAccounts.Items.Add(DataToString(data));
+            listBoxAccounts.Items.Add(DataToString(data));
         }
 
         private void DoLogin(LoginData data)
         {
-            this.Hide();
+            Hide();
             try
             {
-                this.LoginClient = data.Login(this.Login);
+                LoginClient = data.Login(Login);
 
                 SettingsManager.LoginDatas.Remove(data);
                 SettingsManager.LoginDatas.Insert(0, data);
                 SettingsManager.Save();
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {
-                this.Show();
+                Show();
                 MessageBox.Show("Unable to login: " + ex.Message, "Error!");
             }
         }
 
         private void DoLogin(string facebookToken)
         {
-            this.Hide();
+            Hide();
             try
             {
-                this.LoginClient = this.Login.WithFacebook(facebookToken);
-                this.Close();
+                LoginClient = Login.WithFacebook(facebookToken);
+                Close();
             }
             catch (Exception ex)
             {
-                this.Show();
+                Show();
                 MessageBox.Show("Unable to login: " + ex.Message, "Error!");
             }
         }
 
         private static string DataToString(LoginData data)
         {
-            return String.Format("({0}) {1}", data.LoginType, data.Email);
+            return $"({data.LoginType}) {data.Email}";
         }
     }
 }

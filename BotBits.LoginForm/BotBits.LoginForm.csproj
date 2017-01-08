@@ -91,7 +91,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml">
@@ -124,6 +126,20 @@
       <Name>BotBits.LoginForm.Facebook</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemDefinitionGroup>
+    <COMReference>
+      <!-- Prevent all COM references from being packaged. -->
+      <ExcludeFromNuPkg>true</ExcludeFromNuPkg>
+    </COMReference>
+    <ProjectReference>
+      <!-- Prevent all project references from being packaged. -->
+      <ExcludeFromNuPkg>true</ExcludeFromNuPkg>
+    </ProjectReference>
+    <Reference>
+      <!-- Prevent all references from being packaged. -->
+      <ExcludeFromNuPkg>true</ExcludeFromNuPkg>
+    </Reference>
+  </ItemDefinitionGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="CosturaCleanup" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
     <ParameterGroup>

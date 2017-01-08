@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using System;
+﻿using System;
+using System.ComponentModel;
 
 namespace BotBits.LoginForm
 {
@@ -8,14 +8,13 @@ namespace BotBits.LoginForm
     {
         public LoginData()
         {
-
         }
 
         internal LoginData(LoginType loginType, string email, string password)
         {
-            LoginType = loginType;
-            Password = password;
-            Email = email;
+            this.LoginType = loginType;
+            this.Password = password;
+            this.Email = email;
         }
 
         public LoginType LoginType { get; set; }
@@ -24,13 +23,18 @@ namespace BotBits.LoginForm
 
         internal LoginClient Login(Login login)
         {
-            switch (LoginType)
+            switch (this.LoginType)
             {
-                case LoginType.ArmorGames: return login.WithArmorGames(Email, Password);
-                case LoginType.Kongregate: return login.WithKongregate(Email, Password);
-                case LoginType.Regular: return login.WithEmail(Email, Password);
-                case LoginType.Facebook: return login.WithFacebook(Email);
-                default: throw new InvalidOperationException();
+                case LoginType.ArmorGames:
+                    return login.WithArmorGames(this.Email, this.Password);
+                case LoginType.Kongregate:
+                    return login.WithKongregate(this.Email, this.Password);
+                case LoginType.Regular:
+                    return login.WithEmail(this.Email, this.Password);
+                case LoginType.Facebook:
+                    return login.WithFacebook(this.Email);
+                default:
+                    throw new InvalidOperationException();
             }
         }
     }

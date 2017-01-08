@@ -6,7 +6,7 @@ namespace BotBits.LoginForm
     {
         public World()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

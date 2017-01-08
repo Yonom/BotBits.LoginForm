@@ -8,14 +8,13 @@ namespace BotBits.LoginForm
     {
         public LoginDatas() : this(false)
         {
-            
         }
-        
+
         internal LoginDatas(bool isNew)
         {
             if (isNew)
             {
-                Add(new LoginData(LoginType.Regular, "guest", "guest"));
+                this.Add(new LoginData(LoginType.Regular, "guest", "guest"));
             }
         }
     }

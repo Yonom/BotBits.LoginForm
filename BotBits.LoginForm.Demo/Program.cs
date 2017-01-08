@@ -2,9 +2,9 @@
 
 namespace BotBits.LoginForm.Demo
 {
-    class Program
+    internal class Program
     {
-        static BotBitsClient bot = new BotBitsClient();
+        private static readonly BotBitsClient bot = new BotBitsClient();
 
         private static void Main()
         {

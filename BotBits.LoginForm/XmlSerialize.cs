@@ -1,6 +1,6 @@
-﻿using System.Xml.Serialization;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace BotBits.LoginForm
 {
@@ -24,7 +24,7 @@ namespace BotBits.LoginForm
             using (var reader = new XmlTextReader(path))
             {
                 var deserializer = new XmlSerializer(typeof(T));
-                object obj = deserializer.Deserialize(reader);
+                var obj = deserializer.Deserialize(reader);
                 var xmlData = (T)obj;
                 return xmlData;
             }

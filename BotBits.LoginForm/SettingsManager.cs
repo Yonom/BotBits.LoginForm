@@ -1,18 +1,17 @@
-﻿using System.Windows.Forms;
+﻿using System;
 using System.IO;
-using System;
+using System.Windows.Forms;
 
 namespace BotBits.LoginForm
 {
-    static class SettingsManager
+    internal static class SettingsManager
     {
         private static readonly string _loginDatasPath;
 
-        static SettingsManager() 
+        static SettingsManager()
         {
             BotBitsPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BotBits\\LoginForm";
-            if (!Directory.Exists(BotBitsPath))
-                Directory.CreateDirectory(BotBitsPath);
+            if (!Directory.Exists(BotBitsPath)) Directory.CreateDirectory(BotBitsPath);
 
             try
             {
@@ -28,13 +27,13 @@ namespace BotBits.LoginForm
             }
         }
 
+        public static LoginDatas LoginDatas { get; }
+
+        public static string BotBitsPath { get; }
+
         public static void Save()
         {
             XmlSerialize.Serialize(LoginDatas, _loginDatasPath);
         }
-
-        public static LoginDatas LoginDatas { get; private set; }
-
-        public static string BotBitsPath { get; private set; }
     }
 }
